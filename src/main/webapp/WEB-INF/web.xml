@@ -1,0 +1,138 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+	<display-name>ElTimeTable</display-name>
+
+	<filter>
+		<filter-name>ValidationFilter</filter-name>
+		<filter-class>pl.org.elzylab.eltimetable.tc.filters.ValidationFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>ValidationFilter</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+
+	<servlet>
+		<servlet-name>editTask</servlet-name>
+		<servlet-class>pl.org.elzylab.eltimetable.controllers.task.EditTaskServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>createTask</servlet-name>
+		<servlet-class>pl.org.elzylab.eltimetable.controllers.task.CreateTaskServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>changeStatus</servlet-name>
+		<servlet-class>pl.org.elzylab.eltimetable.controllers.task.ChangeStatusServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>changeProgress</servlet-name>
+		<servlet-class>pl.org.elzylab.eltimetable.controllers.task.ChangeProgressServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>synchronizeTasks</servlet-name>
+		<servlet-class>pl.org.elzylab.eltimetable.controllers.task.SynchronizeTasksServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>validateTabs</servlet-name>
+		<servlet-class>pl.org.elzylab.eltimetable.controllers.tabs.ValidateTabsEdition</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>updateTabs</servlet-name>
+		<servlet-class>pl.org.elzylab.eltimetable.controllers.tabs.UpdateTabsServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>logout</servlet-name>
+		<servlet-class>pl.org.elzylab.eltimetable.tc.auth.LogoutAction</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>editTask</servlet-name>
+		<url-pattern>/tasks/edit.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>createTask</servlet-name>
+		<url-pattern>/tasks/create.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>changeStatus</servlet-name>
+		<url-pattern>/tasks/changeStatus.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>changeProgress</servlet-name>
+		<url-pattern>/tasks/changeProgress.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>synchronizeTasks</servlet-name>
+		<url-pattern>/tasks/synchronizeTasks.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>validateTabs</servlet-name>
+		<url-pattern>/tabs/validateTabs.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>updateTabs</servlet-name>
+		<url-pattern>/tabs/updateTabs.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>logout</servlet-name>
+		<url-pattern>/logout</url-pattern>
+	</servlet-mapping>
+
+	<security-constraint>
+		<display-name>SecurityConstraint</display-name>
+		<web-resource-collection>
+			<web-resource-name>eltimetable</web-resource-name>
+			<url-pattern>*.do</url-pattern>
+			<url-pattern>*.jsp</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>admin</role-name>
+		</auth-constraint>
+		<user-data-constraint>
+			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
+		</user-data-constraint>
+	</security-constraint>
+
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>free pages</web-resource-name>
+			<url-pattern>/eltimetable/js/**</url-pattern>
+		</web-resource-collection>
+	</security-constraint>
+
+	<login-config>
+		<auth-method>FORM</auth-method>
+		<form-login-config>
+			<form-login-page>/loginform.jsp</form-login-page>
+			<form-error-page>/loginerror.jsp</form-error-page>
+		</form-login-config>
+	</login-config>
+
+	<security-role>
+		<role-name>user</role-name>
+	</security-role>
+
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
+	<listener>
+		<listener-class>pl.org.elzylab.eltimetable.controllers.task.PeroidicTaskUpdater</listener-class>
+	</listener>
+</web-app>
