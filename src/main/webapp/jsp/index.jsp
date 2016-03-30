@@ -69,22 +69,37 @@
 
 			var width = document.body.clientWidth;
 			var height = document.body.clientHeight;
+			
 			$('#all').css('width', width);
 			$('#all').css('height', height);
+			
 			var menuHeight = $('#mainMenu').outerHeight();
 			height -= menuHeight;
-			
-			var listWidth = width * resizeRatio;
-			var calendarWidth = width - listWidth;
 			var topMenuHeight = $('#topMenu').outerHeight();
 			
-			$('#calendar').css('width', calendarWidth + 'px');
-			$('#calendar').css('height', height + 'px');
-			$('#list').css('width', listWidth + 'px');
-			$('#list').css('height', height + 'px');
-			$('#listContainer').css('height', height + 'px');
-			$('#taskContainer').css('height', height - topMenuHeight + 'px');
-			$('#topMenu').css('width', listWidth - 7 + 'px');
+			if(width >= 1024) {
+				$('#calendar').css('display', 'block');
+				
+				var listWidth = width * resizeRatio;
+				var calendarWidth = width - listWidth;
+				
+				$('#calendar').css('width', calendarWidth + 'px');
+				$('#calendar').css('height', height + 'px');
+				$('#list').css('width', listWidth + 'px');
+				$('#list').css('height', height + 'px');
+				$('#listContainer').css('height', height + 'px');
+				$('#taskContainer').css('height', height - topMenuHeight + 'px');
+				$('#topMenu').css('width', listWidth - 7 + 'px');
+			}
+			else
+			{
+				$('#calendar').css('display', 'none');
+				$('#list').css('width', width + 'px');
+				$('#list').css('height', height + 'px');
+				$('#taskContainer').css('height', height - topMenuHeight + 'px');
+				$('#topMenu').css('width', width - 7 + 'px');
+				$('#listContainer').css('width', width - 7 + 'px');
+			}
 		}
 
 		
