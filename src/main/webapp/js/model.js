@@ -3,13 +3,13 @@ var model = {
 	tabs: [],
 	tabsEdit: [],
 	
-	synchronize: function(orderBy, tabId, callback) {
+	synchronize: function(orderBy, direction, tabId, callback) {
 		$.ajax({
 			type: "POST", 
 			cache: false, 
 			url: '../tasks/synchronizeTasks.do', 
 			async: true,
-			data: {'tasks': JSON.stringify(model.tasks), 'tabId': tabId, 'orderBy': orderBy}, 
+			data: {'tasks': JSON.stringify(model.tasks), 'tabId': tabId, 'orderBy': orderBy, 'direction': direction}, 
 			complete: function(jqXHR, textStatus) {
 				model.tasks = $.parseJSON(jqXHR.responseText);
 				callback();

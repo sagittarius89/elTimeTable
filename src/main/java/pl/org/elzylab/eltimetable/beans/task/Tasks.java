@@ -22,6 +22,7 @@ import java.util.List;
 
 import pl.org.elzylab.eltimetable.tc.Utils;
 import pl.org.elzylab.eltimetable.tc.persistence.Database;
+import pl.org.elzylab.eltimetable.tc.persistence.SortDirection;
 
 /**
  * ====================================================================
@@ -39,6 +40,7 @@ public class Tasks {
 	 *            id of user from <b>AD_USER</b> table.
 	 * @param orderBy
 	 *            SQL understandable ORDER BY section. Use for sorting data.
+	 * @param direction 
 	 * @param tabId
 	 *            Id of tab (TT_TAB) form which we request tasks, may be also
 	 *            string such as ALL, ARCHIVED, DELETED
@@ -47,7 +49,7 @@ public class Tasks {
 	 *         {@link pl.org.elzylab.eltimetable.TaskDTO} type.
 	 */
 	public static List<TaskDTO> getTasks(Integer userId, String orderBy,
-		String tabId) {
+		SortDirection direction, String tabId) {
 
 		StringBuilder whereCaluse = new StringBuilder();
 		List<Object> params = new ArrayList<Object>();
@@ -72,7 +74,9 @@ public class Tasks {
 			whereCaluse.append(" AND TAB_ID=?");
 			params.add(Integer.parseInt(tabId));
 		}
-
+		
+		orderBy += " " + direction.toString() + " ";
+		
 		return getTasks(orderBy, whereCaluse.toString(), params.toArray());
 	}
 
@@ -243,7 +247,7 @@ public class Tasks {
 		final String SQL =
 			"SELECT ID, NAME, DESCRIPTION, EXECUTION_TIME, "
 				+ "DURATION, STATUS, COLOR, PROGRESS, EXP, NOTES, "
-				+ "PRIOR, TAB_ID FROM TT_TASK WHERE " + where
+				+ "PRIOR, TAB_ID, CREATION_TIME FROM TT_TASK WHERE " + where
 				+ " ORDER BY STATUS, " + orderBy
 				+ ", STATUS, CREATION_TIME, PROGRESS, EXP";
 
@@ -283,6 +287,7 @@ public class Tasks {
 				task.setNotes(rs.getString(10));
 				task.setPriority(rs.getInt(11));
 				task.setTabId(rs.getInt(12));
+				task.setCreationTime(rs.getTimestamp(13));
 
 				result.add(task);
 			}

@@ -39,7 +39,8 @@ public class TaskDTO implements Serializable {
 	private Integer priority;
 	private Integer tabId;
 	private List<Integer> parents;
-
+	private Timestamp creationTime;
+	
 	public Integer getId() {
 		return this.id;
 	}
@@ -152,5 +153,23 @@ public class TaskDTO implements Serializable {
 
 	public void setParents(List<Integer> parents) {
 		this.parents = parents;
+	}
+
+	/**
+	 * creationTime getter
+	 *
+	 * @return the creationTime
+	 */
+	public Timestamp getCreationTime() {
+		return creationTime;
+	}
+
+	/**
+	 * creationTime setter
+	 *
+	 * @param creationTime the creationTime to set
+	 */
+	public void setCreationTime(Timestamp creationTime) {
+		this.creationTime = creationTime;
 	}
 }

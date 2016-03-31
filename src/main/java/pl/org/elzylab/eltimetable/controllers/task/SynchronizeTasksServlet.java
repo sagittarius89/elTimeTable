@@ -25,6 +25,7 @@ import pl.org.elzylab.eltimetable.beans.task.Tasks;
 import pl.org.elzylab.eltimetable.beans.task.TasksUtils;
 import pl.org.elzylab.eltimetable.tc.Utils;
 import pl.org.elzylab.eltimetable.tc.auth.UserData;
+import pl.org.elzylab.eltimetable.tc.persistence.SortDirection;
 
 /**
  * ====================================================================
@@ -44,13 +45,23 @@ public class SynchronizeTasksServlet extends HttpServlet {
 		UserData userData = Utils.getUserData(request);
 		String orderBy = request.getParameter("orderBy");
 		String tabId = request.getParameter("tabId");
-
+		String directionStr = request.getParameter("direction");
+		SortDirection direction = SortDirection.ASC;
+		
+		/*may cause trouble if direction parameter is not parsable but it 
+		  prevent by SQL injection*/
+		if(directionStr != null)
+			direction = SortDirection.valueOf(directionStr);
+		
 		List<TaskDTO> newTasks = null;
 
+		//@TODO all literals should be moved and changed by constants
 		if ("DATE".equals(orderBy)) {
-			newTasks = Tasks.getTasks(userData.getId(), "CREATION_TIME", tabId);
+			newTasks = Tasks.getTasks(userData.getId(), "CREATION_TIME",
+				direction, tabId);
 		} else {
-			newTasks = Tasks.getTasks(userData.getId(), "PRIOR", tabId);
+			newTasks = Tasks.getTasks(userData.getId(), "PRIOR", direction,
+				tabId);
 		}
 
 		PrintWriter printWriter = Utils.getPrintWriter(response);

@@ -47,8 +47,13 @@
 					<textarea name="nameLabel" readonly="readonly"
 						style="min-height: 45px; width: 100%; background-color: inherit; border: none; resize: none; font-family: Arial, 'MS Sans Serif'; font-size: 16px; font-weight: 500;"></textarea>
 				</div>
-				<div style="font-size: 10px;text-align: right;padding-right: 5px;">
-					<label name="prior"></label>
+				<div style="height: 13px">
+					<div style="font-size: 10px;text-align: right;padding-right: 5px; float: right">
+						<label name="prior"></label>
+					</div>
+					<div style="font-size: 10px;text-align: left;padding-right: 5px; float: left">
+						<label>Creation date: </label><label name="cDate"></label>
+					</div>
 				</div>
 				<div style="overflow: hidden; display: block;">
 					<div style="float: left; width: 24px; height: 24px; margin-left:5px">

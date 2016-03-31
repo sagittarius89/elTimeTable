@@ -3,8 +3,9 @@ var listController = {
 		$('#list').mask('refreshing...');
 		var orderBy = $('#sortBySelect').val();
 		var tabId = tabsController.getActiveTabId();
+		var direction = listView.sort.value;
 		
-		model.synchronize(orderBy, tabId, function() {
+		model.synchronize(orderBy, direction, tabId, function() {
 			listView.removeAll();
 
 			for (i = 0; i < model.tasks.length; ++i) {

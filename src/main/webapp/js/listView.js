@@ -1,5 +1,45 @@
 var listView = {
-
+	sort: {
+		ASC: "ASC",
+		DESC: "DESC",
+		value: '',
+		component: $('sortArrow'),
+		
+		initialize: function() {
+			$('#sortArrow').button({
+				icons : {
+					primary : "ui-icon-arrowthick-1-n",
+				},
+				text : false
+			}).click(function() {
+				listView.sort.changeOrder();
+			});;
+			
+			this.value = this.ASC;
+		},
+		
+		changeOrder: function() {
+			
+			var icon = '';
+			
+			if(this.value == this.ASC) {
+				this.value = this.DESC;
+				icon = "ui-icon-arrowthick-1-s";
+			} else {
+				this.value = this.ASC;
+				icon = "ui-icon-arrowthick-1-n";
+			}
+			
+			$('#sortArrow').button({
+				icons : {
+					primary : icon,
+				},
+			});
+			
+			listController.forceRefresh();
+		}
+	},
+	
 	initialize : function() {
 		$("#addTaskButton").button({
 			icons : {
@@ -21,12 +61,7 @@ var listView = {
 			listController.forceRefresh();
 		});
 		
-		$('#sortArrow').button({
-			icons : {
-				primary : "ui-icon-arrowthick-1-n",
-			},
-			text : false
-		});
+		this.sort.initialize();
 
 		listController.forceRefresh();
 	},
@@ -84,6 +119,8 @@ var listView = {
 		} else {
 			listView.addActiveTask(model, newId, taskElem);
 		}
+		
+		getJqTskComp(newId, 'cDate').text(model.creationTime);
 	},
 
 	addDisabledTask : function(model, newId, taskElem) {
