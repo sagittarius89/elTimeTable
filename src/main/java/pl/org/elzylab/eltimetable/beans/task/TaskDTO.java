@@ -40,6 +40,7 @@ public class TaskDTO implements Serializable {
 	private Integer tabId;
 	private List<Integer> parents;
 	private Timestamp creationTime;
+	private String guid;
 	
 	public Integer getId() {
 		return this.id;
@@ -171,5 +172,23 @@ public class TaskDTO implements Serializable {
 	 */
 	public void setCreationTime(Timestamp creationTime) {
 		this.creationTime = creationTime;
+	}
+
+	/**
+	 * guid getter
+	 *
+	 * @return the guid
+	 */
+	public String getGuid() {
+		return guid;
+	}
+
+	/**
+	 * guid setter
+	 *
+	 * @param guid the guid to set
+	 */
+	public void setGuid(String guid) {
+		this.guid = guid;
 	}
 }

@@ -96,8 +96,9 @@ public class Tasks {
 			"INSERT INTO TT_TASK (NAME, DESCRIPTION, "
 				+ "EXECUTION_TIME, DURATION, STATUS, "
 				+ "COLOR, PROGRESS, EXP, NOTES, USER_ID, PRIOR, "
-				+ "CREATION_TIME, TAB_ID) "
-				+ "VALUES (?, ?, ?, ?, ?, ? ,0 , ?, ?, ?, ?, Now(), ?)";
+				+ "CREATION_TIME, TAB_ID, GUID) "
+				+ "VALUES (?, ?, ?, ?, ?, ? ,0 , ?, ?, ?, ?, Now(), ?, "
+				+ "uuid_generate_v4())";
 
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -247,8 +248,8 @@ public class Tasks {
 		final String SQL =
 			"SELECT ID, NAME, DESCRIPTION, EXECUTION_TIME, "
 				+ "DURATION, STATUS, COLOR, PROGRESS, EXP, NOTES, "
-				+ "PRIOR, TAB_ID, CREATION_TIME FROM TT_TASK WHERE " + where
-				+ " ORDER BY STATUS, " + orderBy
+				+ "PRIOR, TAB_ID, CREATION_TIME, GUID FROM TT_TASK WHERE " 
+				+ where + " ORDER BY STATUS, " + orderBy
 				+ ", STATUS, CREATION_TIME, PROGRESS, EXP";
 
 		Connection con = null;
@@ -288,6 +289,7 @@ public class Tasks {
 				task.setPriority(rs.getInt(11));
 				task.setTabId(rs.getInt(12));
 				task.setCreationTime(rs.getTimestamp(13));
+				task.setGuid(rs.getString(14));
 
 				result.add(task);
 			}

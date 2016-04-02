@@ -98,20 +98,26 @@ var listView = {
 			});
 		}
 		
-
-		taskElem.mouseenter(function() {
+		getJqTskComp(newId,'extendButton').button({
+			icons : {
+				primary : "ui-icon-newwin",
+			},
+			text : false
+		}).addClass(newId,'taskButton');
+		
+		getJqTskComp(newId,'extendButton').mouseenter(function() {
 			editTaskView.previewTask(model);
-			editTaskView.setPosition($('#' + newId));
-		});
-
-		taskElem.mouseleave(function() {
+			editTaskView.setPosition(getJqTskComp(newId,'extendButton'));
+		}).mouseleave(function() {
 			if (editTaskView.lock == false) {
 				editTaskView.hide();
 			}
-		});
-
-		taskElem.click(function() {
+		}).click(function() {
 			editTaskView.lockPreview();
+		}).css({
+			"width": "13px",
+			"height": "12px",
+			"margin-left": "5px"
 		});
 
 		if (model.status != 1) {
@@ -121,6 +127,7 @@ var listView = {
 		}
 		
 		getJqTskComp(newId, 'cDate').text(model.creationTime);
+		getJqTskComp(newId, 'guidLabel').text(model.guid);
 	},
 
 	addDisabledTask : function(model, newId, taskElem) {
@@ -408,9 +415,9 @@ var editTaskView = {
 	setPosition : function(task) {
 		$('#editTaskDialog').dialog("option", "position", {
 			of : task,
-			my : 'right center',
-			at : 'left top',
-			collision : 'fit'
+			my : 'left top',
+			at : 'right top',
+			collision : 'flipfit flipfit'
 		});
 	},
 

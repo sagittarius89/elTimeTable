@@ -52,7 +52,13 @@
 						<label name="prior"></label>
 					</div>
 					<div style="font-size: 10px;text-align: left;padding-right: 5px; float: left">
-						<label>Creation date: </label><label name="cDate"></label>
+						<button name="extendButton"></button>
+					</div>
+					<div style="font-size: 10px;text-align: left;padding-right: 5px; float: left">
+						<label name="cDate"></label>
+					</div>
+					<div style="font-size: 10px;text-align: left;padding-right: 5px; float: left">
+						<label>| </label><label name="guidLabel"></label>
 					</div>
 				</div>
 				<div style="overflow: hidden; display: block;">
