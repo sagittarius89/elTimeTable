@@ -21,6 +21,8 @@
 	<script>
 		$(function() {
 			setupListContainer();
+			
+			setInterval(ping, 10000);
 			//setupListMenu();
 		});
 

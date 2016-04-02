@@ -56,3 +56,20 @@ function removeFromTable(array, object) {
 	if(index != -1)
 		array.splice(index, 1);
 }
+
+function ping() {
+	$.ajax({
+		type: "POST", 
+		cache: false, 
+		url: '../ping.do',
+		complete: function(jqXHR, textStatus) {
+			var response = $.parseJSON(jqXHR.responseText);
+			
+			if(response.PING != "OK")
+				logout();
+		},
+		error: function(jqXHR, textStatus) {
+			logout();
+		}
+	});
+}

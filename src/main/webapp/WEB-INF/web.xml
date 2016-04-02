@@ -53,6 +53,11 @@
 		<servlet-name>logout</servlet-name>
 		<servlet-class>pl.org.elzylab.eltimetable.tc.auth.LogoutAction</servlet-class>
 	</servlet>
+	
+	<servlet>
+		<servlet-name>ping</servlet-name>
+		<servlet-class>pl.org.elzylab.eltimetable.controllers.PingServlet</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>editTask</servlet-name>
@@ -92,6 +97,11 @@
 	<servlet-mapping>
 		<servlet-name>logout</servlet-name>
 		<url-pattern>/logout</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>ping</servlet-name>
+		<url-pattern>/ping.do</url-pattern>
 	</servlet-mapping>
 
 	<security-constraint>
