@@ -119,6 +119,28 @@ var listView = {
 			"height": "12px",
 			"margin-left": "5px"
 		});
+		
+		getJqTskComp(newId,'relatedTaskButton').button({
+			icons : {
+				primary : "ui-icon-link",
+			},
+			text : false
+		}).addClass(newId,'taskButton');
+		
+		getJqTskComp(newId,'relatedTaskButton').mouseenter(function() {
+			relatedTasksView.preview(model);
+			relatedTasksView.setPosition(getJqTskComp(newId,'relatedTaskButton'));
+		}).mouseleave(function() {
+			if (relatedTasksView.lock == false) {
+				relatedTasksView.hide();
+			}
+		}).click(function() {
+			relatedTasksView.edit(model);
+		}).css({
+			"width": "13px",
+			"height": "12px",
+			"margin-left": "5px"
+		});
 
 		if (model.status != 1) {
 			listView.addDisabledTask(model, newId, taskElem)
@@ -221,10 +243,10 @@ var listView = {
 			return false;
 		});
 
-		taskElem.draggable({
+		/*taskElem.draggable({
 			containment : '#taskContainer',
 			axis : 'y'
-		});
+		});*/
 
 		getJqTskComp(newId, 'prior').text(priorMap[model.priority]);
 	},

@@ -111,5 +111,6 @@
 	<div id="editTaskDialog" title="Edit task" style="display: none">
 		<jsp:include page="addTaskForm.jsp"></jsp:include>
 	</div>
+	<jsp:include page="relatedTasks.jsp"></jsp:include>
 </body>
 </html>

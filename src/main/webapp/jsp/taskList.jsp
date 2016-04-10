@@ -43,11 +43,7 @@
 				</div>
 			</div>
 			<div style="width: auto;height: 92px;float: none;overflow: hidden;">
-				<div style="padding: 5px;">
-					<textarea name="nameLabel" readonly="readonly"
-						style="min-height: 45px; width: 100%; background-color: inherit; border: none; resize: none; font-family: Arial, 'MS Sans Serif'; font-size: 16px; font-weight: 500;"></textarea>
-				</div>
-				<div style="height: 13px">
+				<div style="height: 13px; background-color: #002147; color: #666666;">
 					<div style="font-size: 10px;text-align: right;padding-right: 5px; float: right">
 						<label name="prior"></label>
 					</div>
@@ -55,11 +51,18 @@
 						<button name="extendButton"></button>
 					</div>
 					<div style="font-size: 10px;text-align: left;padding-right: 5px; float: left">
+						<button name="relatedTaskButton"></button>
+					</div>
+					<div style="font-size: 10px;text-align: left;padding-right: 5px; float: left">
 						<label name="cDate"></label>
 					</div>
 					<div style="font-size: 10px;text-align: left;padding-right: 5px; float: left">
 						<label>| </label><label name="guidLabel"></label>
 					</div>
+				</div>
+				<div style="padding: 5px;">
+					<textarea name="nameLabel" readonly="readonly"
+						style="min-height: 45px; width: 100%; background-color: inherit; border: none; resize: none; font-family: Arial, 'MS Sans Serif'; font-size: 16px; font-weight: 500;"></textarea>
 				</div>
 				<div style="overflow: hidden; display: block;">
 					<div style="float: left; width: 24px; height: 24px; margin-left:5px">

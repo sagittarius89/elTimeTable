@@ -46,5 +46,7 @@
 	<script src="/eltimetable/js/listView.js"></script>
 	<script src="/eltimetable/js/tabsController.js"></script>
 	<script src="/eltimetable/js/tabsView.js"></script>
+	<script src="/eltimetable/js/relatedTasksController.js"></script>
+	<script src="/eltimetable/js/relatedTasksView.js"></script>
 </c:if>
 
